@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+
 Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_mode', 'HtmlMinifier']], function () {
 
     Route::get('/', 'FrontendController@index')->name('homepage');
@@ -38,18 +40,18 @@ $image_gallery_page_slug = get_static_option('image_gallery_page_slug') ?? 'imag
 $video_gallery_page_slug = get_static_option('video_gallery_page_slug') ?? 'video-gallery';
 $donor_page_slug = get_static_option('donor_page_slug') ?? 'donor-list';
 
-  /*--------------------------------------
-        FRONTEND: SERVICES ROUTES
-    ---------------------------------------*/
+  
+       // FRONTEND: SERVICES ROUTES
+  
     $service_page_slug = get_static_option('service_page_slug') ?? 'service';
     Route::get($service_page_slug, 'FrontendController@service_page')->name('frontend.service');
     Route::get($service_page_slug.'/category/{id}/{any?}', 'FrontendController@category_wise_services_page')->name('frontend.services.category');
     Route::get( $service_page_slug.'/{slug}', 'FrontendController@services_single_page')->name('frontend.services.single');
 
 
-     /*------------------------------------
-        FRONTEND: ROUTES
-    ------------------------------------*/
+   
+       // FRONTEND: ROUTES
+    
     Route::get('/' . $testimonial_page_slug, 'FrontendController@testimonials')->name('frontend.testimonials');
     Route::get('/' . $feedback_page_slug, 'FrontendController@feedback_page')->name('frontend.feedback');
     Route::get('/' . $clients_feedback_page_slug, 'FrontendController@clients_feedback_page')->name('frontend.clients.feedback');
@@ -64,9 +66,9 @@ $donor_page_slug = get_static_option('donor_page_slug') ?? 'donor-list';
     Route::post('/appointment-message', 'FrontendFormController@appointment_message')->name('frontend.appointment.message');
     Route::post('/service-quote', 'FrontendFormController@service_quote')->name('frontend.service.quote');
     Route::post('/case-study-quote', 'FrontendFormController@case_study_quote')->name('frontend.case.study.quote');
-    /*-----------------------------
-        SUBSCRIBER VERIFY
-    -----------------------------*/
+   
+      //  SUBSCRIBER VERIFY
+   
     Route::get('/subscriber/email-verify/{token}','FrontendController@subscriber_verify')->name('subscriber.verify');
 
 
