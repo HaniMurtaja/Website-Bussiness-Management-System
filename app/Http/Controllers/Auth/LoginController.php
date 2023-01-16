@@ -21,74 +21,56 @@ class LoginController extends Controller
         return route('user.home');
     }
 
-    public function index()
+
+    public function __construct()
     {
-        
+        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+  
+
+
+    public function username() {
+        return 'username';
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
+
+
+    public function showAdminLoginForm(){
+        return view('auth.admin.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function adminLogin(Request $request)
     {
-        
+        $this->validate($request, [
+            'username'   => 'required|string',
+            'password' => 'required|min:6'
+        ],[
+            'username.required'   => __('username required'),
+            'password.required' => __('password required')
+        ]);
+
+        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
+
+            return response()->json([
+               'msg' => __('Login Success Redirecting'),
+               'type' => 'success',
+               'status' => 'ok'
+            ]);
+        }
+        return response()->json([
+            'msg' => __('Your Username or Password Is Wrong !!'),
+            'type' => 'danger',
+            'status' => 'not_ok'
+        ]);
+    }
+    
+
+    public function showLoginForm()
+    {
+        return view('frontend.user.login');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
-    }
+    
 }
