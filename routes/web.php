@@ -24,7 +24,8 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::get('/', 'FrontendController@index')->name('homepage');
 
 
-//static page
+//static page 
+/*
 $about_page_slug = get_static_option('about_page_slug') ?? 'about';
 $work_page_slug = get_static_option('work_page_slug') ?? 'work';
 $faq_page_slug = get_static_option('faq_page_slug') ?? 'faq';
@@ -91,7 +92,7 @@ $donor_page_slug = get_static_option('donor_page_slug') ?? 'donor-list';
     Route::post('/request-quote', 'FrontendFormController@send_quote_message')->name('frontend.quote.message');
     Route::post('/request-estimate', 'FrontendFormController@send_estimate_message')->name('frontend.estimate.message');
     Route::get('/home/{id}', 'FrontendController@home_page_change')->name('frontend.homepage.demo');
-
+*/
 });
 
 
