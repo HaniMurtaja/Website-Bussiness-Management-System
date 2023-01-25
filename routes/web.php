@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
+
 
 Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_mode', 'HtmlMinifier']], function () {
 
@@ -95,9 +95,8 @@ $donor_page_slug = get_static_option('donor_page_slug') ?? 'donor-list';
 });
 
 
-/*------------------------------------
-    DYNAMIC PAGE ROUTE
--------------------------------------*/
+
+
 Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'HtmlMinifier']], function () {
     Route::get('/{slug}', 'FrontendController@dynamic_single_page')->name('frontend.dynamic.page');
 });
